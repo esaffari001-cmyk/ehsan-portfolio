@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ehsan Saffari | Game Developer Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121933;
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
+      --text: #eef2ff;
+      --muted: #b5bfdc;
+      --accent: #4fd1ff;
+      --accent-2: #8b5cf6;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at top left, rgba(79,209,255,0.12), transparent 30%),
+                  radial-gradient(circle at top right, rgba(139,92,246,0.12), transparent 28%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1100px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(11,16,32,0.8);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+      gap: 16px;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+
+    .brand strong {
+      font-size: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero {
+      padding: 78px 0 56px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(79,209,255,0.28);
+      background: rgba(79,209,255,0.1);
+      color: #a5ecff;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(36px, 6vw, 62px);
+      line-height: 1.05;
+    }
+
+    .lead {
+      margin-top: 20px;
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 680px;
+    }
+
+    .hero-actions {
+      margin-top: 28px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 16px;
+      font-weight: bold;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #07101d;
+    }
+
+    .btn-secondary {
+      border-color: var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+    }
+
+    .hero-card {
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      padding: 22px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .hero-card img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 22px;
+      display: block;
+    }
+
+    section {
+      padding: 52px 0;
+    }
+
+    .section-kicker {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 4vw, 42px);
+    }
+
+    .section-text {
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      overflow: hidden;
+    }
+
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      background: rgba(79,209,255,0.1);
+      border: 1px solid rgba(79,209,255,0.18);
+      color: #a5ecff;
+    }
+
+    .skills-wrap {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 26px;
+      align-items: start;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 28px;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, rgba(79,209,255,0.12), rgba(139,92,246,0.12));
+      border: 1px solid rgba(79,209,255,0.2);
+      border-radius: 30px;
+      padding: 30px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .contact-item {
+      background: rgba(11,16,32,0.45);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .contact-item strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: normal;
+    }
+
+    footer {
+      padding: 24px 0 40px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .projects,
+      .skills-wrap,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 56px;
+      }
+
+      .hero-card img {
+        height: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <small>Portfolio</small>
+        <strong>Ehsan Saffari</strong>
+      </div>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="pill">Unreal Engine • Gameplay Systems • Level Design</div>
+        <h1>Building gameplay experiences with Unreal Engine.</h1>
+        <p class="lead">
+          I’m Ehsan Saffari, a developer passionate about game development, gameplay systems, and level design. I build interactive projects in Unreal Engine, including third-person action and top-down ability-based games.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a class="btn btn-secondary" href="#contact">Contact Me</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=1400&q=80" alt="Game development setup" />
+      </div>
+    </div>
+  </header>
+
+  <section id="projects">
+    <div class="container">
+      <div class="section-kicker">Projects</div>
+      <h2>Selected Work</h2>
+      <p class="section-text">
+        These projects highlight my work in Unreal Engine across combat systems, AI, Gameplay Ability System development, and level design.
+      </p>
+
+      <div class="projects">
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80" alt="Echo project" />
+          <div class="card-body">
+            <h3>Echo</h3>
+            <p>
+              A third-person action game built from scratch in Unreal Engine. I designed the landscape, added custom trees and props, integrated the Echo character from the Unreal Marketplace, and developed enemies with AI. The gameplay includes attack and dodge mechanics, health systems, and breakable items that drop collectibles.
+            </p>
+            <div class="tags">
+              <span class="tag">Third-person action</span>
+              <span class="tag">Enemy AI</span>
+              <span class="tag">Combat systems</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80" alt="Aura project" />
+          <div class="card-body">
+            <h3>Aura</h3>
+            <p>
+              A top-down game in development using Unreal Engine’s Gameplay Ability System (GAS). The project focuses on abilities, character progression, and strategic top-down gameplay built around advanced ability systems.
+            </p>
+            <div class="tags">
+              <span class="tag">Top-down gameplay</span>
+              <span class="tag">GAS</span>
+              <span class="tag">Character progression</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?auto=format&fit=crop&w=1200&q=80" alt="Fortnite Creative map" />
+          <div class="card-body">
+            <h3>Fortnite Creative Map</h3>
+            <p>
+              A custom Fortnite Creative experience focused on level design, player flow, and building engaging gameplay spaces inside the Fortnite ecosystem.
+            </p>
+            <div class="tags">
+              <span class="tag">Level design</span>
+              <span class="tag">Player flow</span>
+              <span class="tag">Creative tools</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+      <div class="skills-wrap">
+        <div>
+          <div class="section-kicker">Skills</div>
+          <h2>Tools and strengths</h2>
+          <p class="section-text">
+            My work focuses on building interactive gameplay systems, designing playable spaces, and developing technical prototypes that can grow into polished game experiences.
+          </p>
+        </div>
+        <div class="skills-grid">
+          <span class="skill">Unreal Engine</span>
+          <span class="skill">Blueprints</span>
+          <span class="skill">Gameplay Systems</span>
+          <span class="skill">Level Design</span>
+          <span class="skill">Enemy AI</span>
+          <span class="skill">Gameplay Ability System</span>
+          <span class="skill">C++</span>
+          <span class="skill">Python</span>
+          <span class="skill">Node.js</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container about-grid">
+      <div>
+        <div class="section-kicker">About</div>
+        <h2>My background</h2>
+      </div>
+      <div class="section-text">
+        <p>
+          I have a software development background and a strong interest in game creation. My recent focus has been on Unreal Engine projects that showcase gameplay design, AI systems, interactive mechanics, and level-building fundamentals.
+        </p>
+        <p>
+          I enjoy studying well-crafted games and translating ideas into playable systems. My goal is to grow into a professional game development role where I can contribute to engaging player experiences.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="contact-box">
+        <div class="section-kicker">Contact</div>
+        <h2>Let’s connect</h2>
+        <p class="section-text">
+          Interested in my work or want to talk about game development opportunities? Feel free to reach out.
+        </p>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <strong>Email</strong>
+            <a href="mailto:e.saffari@outlook.com">e.saffari@outlook.com</a>
+          </div>
+          <div class="contact-item">
+            <strong>LinkedIn</strong>
+            <a href="https://www.linkedin.com/in/ehsan-saffari-8279ba266" target="_blank" rel="noopener noreferrer">ehsan-saffari-8279ba266</a>
+          </div>
+          <div class="contact-item">
+            <strong>Resume</strong>
+            <span>Add your PDF resume link here</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">© 2026 Ehsan Saffari. Built for game development applications.</div>
+  </footer>
+</body>
+</html>
